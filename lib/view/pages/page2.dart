@@ -23,8 +23,7 @@ class Page2 extends StatelessWidget {
           children: [
             Text(
               "My Process",
-              style: TextStyle(
-                  fontSize: 25, color: Colors.red, fontWeight: FontWeight.w700),
+              style: TextStyle(fontSize: 25, color: Colors.red, fontWeight: FontWeight.w700),
             ),
             SizedBox(
               height: 9,
@@ -38,10 +37,7 @@ class Page2 extends StatelessWidget {
                   ),
                   Text(
                     "My Goals",
-                    style: TextStyle(
-                        color: Colors.green,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w800),
+                    style: TextStyle(color: Colors.green, fontSize: 22, fontWeight: FontWeight.w800),
                   ),
                   CarouselWidget(),
                 ],
@@ -54,8 +50,7 @@ class Page2 extends StatelessWidget {
             Container(
               height: 150,
               width: 380,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), color: Colors.amber),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20), color: Colors.amber),
               child: ListView.builder(
                 itemCount: searchProvider.nutritions.length,
                 itemBuilder: (context, index) {

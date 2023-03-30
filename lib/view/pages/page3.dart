@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:example/constants/constants.dart';
+import 'package:example/view/widgets/custom_button.dart';
 import 'package:faker/faker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +29,7 @@ class Page3 extends StatelessWidget {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(5.0),
         child: Column(
           children: [
             TextField(
@@ -42,115 +44,126 @@ class Page3 extends StatelessWidget {
               builder: (context, provider, child) {
                 if (provider.getData != null) {
                   return Container(
-                    child: Expanded(
-                      child: ListView.builder(
-                          itemCount: provider.getData!["items"].length,
-                          itemBuilder: (BuildContext context, int index) {
-                            String foodName = provider.getData!["items"][index]["name"];
-                            double foodCalorie = provider.getData!["items"][index]["calories"];
-                            double foodFat = provider.getData!["items"][index]["fat_total_g"];
-                            int foodCholesterol = provider.getData!["items"][index]["cholesterol_mg"];
-                            double foodProtein = provider.getData!["items"][index]["protein_g"];
+                    height: MediaQuery.of(context).size.height * 2.9 / 4,
+                    child: ListView.builder(
+                        physics: NeverScrollableScrollPhysics(), // Set the physics to disable scrolling
 
-                            return Container(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    color: Colors.grey[200],
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(12),
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                  faker.image.image(
-                                                    keywords: ['$foodName'],
-                                                  ).toString(),
-                                                ),
-                                                fit: BoxFit.cover,
-                                                colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop)),
-                                          ),
+                        itemCount: provider.getData!["items"].length,
+                        itemBuilder: (BuildContext context, int index) {
+                          String foodName = provider.getData!["items"][index]["name"];
+                          double foodCalorie = provider.getData!["items"][index]["calories"];
+                          double foodFat = provider.getData!["items"][index]["fat_total_g"];
+                          int foodCholesterol = provider.getData!["items"][index]["cholesterol_mg"];
+                          double foodProtein = provider.getData!["items"][index]["protein_g"];
 
-                                          child: Row(
-                                            children: [
-                                              Expanded(
-                                                flex: 2,
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(6.0),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        color: Colors.black.withOpacity(0.5),
-                                                        borderRadius: BorderRadius.circular(10)),
-                                                    height: 90,
-                                                    child: Center(
-                                                      child: Text(
-                                                        "${capitalize(foodName)}",
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontSize: 20,
+                          return Container(
+                            height: MediaQuery.of(context).size.height,
+                            alignment: Alignment.topCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(vertical: 10),
+                              child: Container(
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color: Colors.grey[100],
+                                  // color: Colors.grey[200],
+                                ),
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(12),
+                                          image: DecorationImage(
+                                              image: NetworkImage(
+                                                faker.image.image(
+                                                  keywords: ['$foodName'],
+                                                ).toString(),
+                                              ),
+                                              fit: BoxFit.cover,
+                                              colorFilter: ColorFilter.mode(Colors.white.withOpacity(0.5), BlendMode.dstATop)),
+                                        ),
+
+                                        child: Column(
+                                          children: [
+                                            Expanded(
+                                              flex: 1,
+                                              child: Padding(
+                                                padding: const EdgeInsets.all(6.0),
+                                                child: Container(
+                                                  decoration: BoxDecoration(color: Colors.black.withOpacity(0.5), borderRadius: BorderRadius.circular(10)),
+                                                  height: 90,
+                                                  child: Column(children: [
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: Center(
+                                                        child: Text(
+                                                          "${capitalize(foodName)}",
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 30,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                  ),
+                                                    Expanded(
+                                                      flex: 2,
+                                                      child: Row(
+                                                        children: [
+                                                          Expanded(
+                                                            flex: 1,
+                                                            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                                              NutritionCategoryCreator('Calories'),
+                                                              NutritionCategoryCreator('Fat'),
+                                                              NutritionCategoryCreator('Cholesterol'),
+                                                              NutritionCategoryCreator('Protein'),
+                                                            ]),
+                                                          ),
+                                                          Expanded(
+                                                            flex: 1,
+                                                            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                                              NutritionTextCreator(foodCalorie),
+                                                              NutritionTextCreator(foodFat),
+                                                              NutritionTextCreator(foodCholesterol),
+                                                              NutritionTextCreator(foodProtein),
+                                                            ]),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ]),
                                                 ),
                                               ),
-                                              Expanded(
-                                                flex: 2,
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.start,
-                                                  children: [
-                                                    Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                                                      Text("Calories:  ", style: TextStyle(fontSize: 16)),
-                                                      Text("fat:   ", style: TextStyle(fontSize: 16)),
-                                                      Text("Cholesterol:   ", style: TextStyle(fontSize: 16)),
-                                                      Text("Protein:   ", style: TextStyle(fontSize: 16)),
-                                                    ]),
-                                                  ],
-                                                ),
+                                            ),
+                                            Expanded(
+                                              flex: 1,
+                                              child: CustomButton1(
+                                                color: Colors.white,
+                                                onPressed: () {
+                                                  FocusScope.of(context).unfocus();
+                                                  for (var item in provider.getData!["items"]) {
+                                                    context.read<SearchProvider>().addNutrition(NutritionModel.fromJson(item));
+                                                  }
+                                                  onPageChange();
+                                                },
+                                                text: 'Add',
+                                                textColor: greenCustom,
                                               ),
-                                              Expanded(
-                                                flex: 1,
-                                                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                                                  Text("${foodCalorie} ", style: TextStyle(fontSize: 16)),
-                                                  Text("${foodFat} ", style: TextStyle(fontSize: 16)),
-                                                  Text("${foodCholesterol} ", style: TextStyle(fontSize: 16)),
-                                                  Text("${foodProtein} ", style: TextStyle(fontSize: 16)),
-                                                ]),
-                                              ),
-                                              Expanded(
-                                                flex: 1,
-                                                child: TextButton(
-                                                  onPressed: () {
-                                                    FocusScope.of(context).unfocus();
-                                                    for (var item in provider.getData!["items"]) {
-                                                      context.read<SearchProvider>().addNutrition(NutritionModel.fromJson(item));
-                                                    }
-                                                    onPageChange();
-                                                  },
-                                                  child: Text(
-                                                    "Add",
-                                                    style: TextStyle(color: Colors.black, fontSize: 20),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          // your content goes here
+                                            ),
+                                          ],
                                         ),
+                                        // your content goes here
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                    SizedBox(height: MediaQuery.of(context).size.height * 1 / 3.7)
+                                  ],
                                 ),
                               ),
-                            );
-                            // return Text("${provider.data!["items"][index]}");
-                          }),
-                    ),
+                            ),
+                          );
+                          // return Text("${provider.data!["items"][index]}");
+                        }),
                   );
                 } else {
                   return Padding(
@@ -165,6 +178,24 @@ class Page3 extends StatelessWidget {
       ),
     );
   }
+
+  Text NutritionCategoryCreator(String e) {
+    return Text("$e",
+        style: TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ));
+  }
+
+  Text NutritionTextCreator(dynamic e) => Text(
+        "${e} ",
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 30,
+          fontWeight: FontWeight.normal,
+        ),
+      );
 }
 
 String capitalize(String string) {
