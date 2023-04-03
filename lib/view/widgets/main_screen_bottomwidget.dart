@@ -4,13 +4,12 @@ import 'package:flutter/material.dart';
 
 class BottomWidget extends StatelessWidget {
   const BottomWidget({
-    super.key,});
-
-
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-     List<Widget> ContainerList = [
+    List<Widget> ContainerList = [
       Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -25,10 +24,7 @@ class BottomWidget extends StatelessWidget {
                 width: 150,
                 child: Text(
                   "The Pros and cons of fast food",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
               SizedBox(
@@ -37,15 +33,12 @@ class BottomWidget extends StatelessWidget {
               Container(
                 width: 100,
                 height: 40,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                 child: TextButton(
                   onPressed: () {},
                   child: Text(
                     "Read Now",
-                    style: TextStyle(
-                        color: Colors.purple, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
                   ),
                 ),
               )
@@ -67,10 +60,7 @@ class BottomWidget extends StatelessWidget {
                 width: 150,
                 child: Text(
                   "Do you want to get online coaching?",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
               SizedBox(
@@ -79,15 +69,12 @@ class BottomWidget extends StatelessWidget {
               Container(
                 width: 100,
                 height: 40,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
+                decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
                 child: TextButton(
                   onPressed: () {},
                   child: Text(
                     "Click here",
-                    style: TextStyle(
-                        color: Colors.purple, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.purple, fontWeight: FontWeight.bold),
                   ),
                 ),
               )

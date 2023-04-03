@@ -2,7 +2,6 @@ import 'package:example/view/pages/page1.dart';
 import 'package:example/view/pages/page2.dart';
 import 'package:example/view/pages/page3.dart';
 import 'package:example/view/pages/page4.dart';
-import 'package:example/view/pages/page5.dart';
 import 'package:example/view/widgets/appbar_custom.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +23,7 @@ class _PageOperatorState extends State<PageOperator> {
   /// Controller to handle PageView and also handles initial page
   final _pageController = PageController(initialPage: 0);
 
-  int maxCount = 5;
+  int maxCount = 4;
 
   /// widget list
   List<Widget> get bottomBarPages => [
@@ -38,7 +37,6 @@ class _PageOperatorState extends State<PageOperator> {
           );
         }),
         Page4(),
-        Page5(),
       ];
 
   @override
@@ -58,7 +56,7 @@ class _PageOperatorState extends State<PageOperator> {
       appBar: AppbarCustom(),
       body: PageView(
         controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(),
+        // physics: const NeverScrollableScrollPhysics(),
         children: List.generate(bottomBarPages.length, (index) => bottomBarPages[index]),
       ),
       extendBody: true,
@@ -104,27 +102,27 @@ class _PageOperatorState extends State<PageOperator> {
                   ),
                   itemLabel: 'Page 3',
                 ),
+                // const BottomBarItem(
+                //   inActiveItem: Icon(
+                //     Icons.settings,
+                //     color: Colors.blueGrey,
+                //   ),
+                //   activeItem: Icon(
+                //     Icons.settings,
+                //     color: Colors.white,
+                //   ),
+                //   itemLabel: 'Page 4',
+                // ),
                 const BottomBarItem(
                   inActiveItem: Icon(
-                    Icons.settings,
+                    Icons.person,
                     color: Colors.blueGrey,
                   ),
                   activeItem: Icon(
-                    Icons.settings,
+                    Icons.person,
                     color: Colors.white,
                   ),
                   itemLabel: 'Page 4',
-                ),
-                const BottomBarItem(
-                  inActiveItem: Icon(
-                    Icons.person,
-                    color: Colors.blueGrey,
-                  ),
-                  activeItem: Icon(
-                    Icons.person,
-                    color: Colors.white,
-                  ),
-                  itemLabel: 'Page 5',
                 ),
               ],
               onTap: (index) {

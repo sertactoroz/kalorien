@@ -29,16 +29,19 @@ class Page3 extends StatelessWidget {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(0),
         child: Column(
           children: [
-            TextField(
-              decoration: InputDecoration(
-                hintText: 'Search for food',
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: TextField(
+                decoration: InputDecoration(
+                  hintText: 'Search for food',
+                ),
+                onChanged: (query) {
+                  context.read<FoodProvider>().search(query);
+                },
               ),
-              onChanged: (query) {
-                context.read<FoodProvider>().search(query);
-              },
             ),
             Consumer<FoodProvider>(
               builder: (context, provider, child) {
@@ -57,7 +60,7 @@ class Page3 extends StatelessWidget {
                           double foodProtein = provider.getData!["items"][index]["protein_g"];
 
                           return Container(
-                            height: MediaQuery.of(context).size.height,
+                            height: MediaQuery.of(context).size.height * 2.9 / 4,
                             alignment: Alignment.topCenter,
                             child: Padding(
                               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -132,23 +135,23 @@ class Page3 extends StatelessWidget {
                                                         ],
                                                       ),
                                                     ),
+                                                    Expanded(
+                                                      flex: 1,
+                                                      child: CustomButton1(
+                                                        color: Colors.white,
+                                                        onPressed: () {
+                                                          FocusScope.of(context).unfocus();
+                                                          for (var item in provider.getData!["items"]) {
+                                                            context.read<SearchProvider>().addNutrition(NutritionModel.fromJson(item));
+                                                          }
+                                                          onPageChange();
+                                                        },
+                                                        text: 'Add',
+                                                        textColor: greenCustom,
+                                                      ),
+                                                    ),
                                                   ]),
                                                 ),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 1,
-                                              child: CustomButton1(
-                                                color: Colors.white,
-                                                onPressed: () {
-                                                  FocusScope.of(context).unfocus();
-                                                  for (var item in provider.getData!["items"]) {
-                                                    context.read<SearchProvider>().addNutrition(NutritionModel.fromJson(item));
-                                                  }
-                                                  onPageChange();
-                                                },
-                                                text: 'Add',
-                                                textColor: greenCustom,
                                               ),
                                             ),
                                           ],
@@ -156,7 +159,7 @@ class Page3 extends StatelessWidget {
                                         // your content goes here
                                       ),
                                     ),
-                                    SizedBox(height: MediaQuery.of(context).size.height * 1 / 3.7)
+                                    // SizedBox(height: MediaQuery.of(context).size.height * 1 / 3.7)
                                   ],
                                 ),
                               ),

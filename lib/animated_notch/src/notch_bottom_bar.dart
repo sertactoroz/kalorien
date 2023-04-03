@@ -46,21 +46,7 @@ class AnimatedNotchBottomBar extends StatefulWidget {
   /// Color of bottom bar
   final Color notchColor;
 
-  const AnimatedNotchBottomBar(
-      {Key? key,
-      required this.pageController,
-      required this.bottomBarItems,
-      required this.onTap,
-      this.color = Colors.white,
-      this.itemLabelStyle,
-      this.showShadow = true,
-      this.showLabel = true,
-      this.showBlurBottomBar = false,
-      this.blurOpacity = 0.5,
-      this.blurFilterX = 5.0,
-      this.blurFilterY = 10.0,
-      this.notchColor = Colors.white})
-      : super(key: key);
+  const AnimatedNotchBottomBar({Key? key, required this.pageController, required this.bottomBarItems, required this.onTap, this.color = Colors.white, this.itemLabelStyle, this.showShadow = true, this.showLabel = true, this.showBlurBottomBar = false, this.blurOpacity = 0.5, this.blurFilterX = 5.0, this.blurFilterY = 10.0, this.notchColor = Colors.white}) : super(key: key);
 
   @override
   _AnimatedNotchBottomBarState createState() => _AnimatedNotchBottomBarState();
@@ -106,7 +92,7 @@ class _AnimatedNotchBottomBarState extends State<AnimatedNotchBottomBar> {
 
               return ClipRRect(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(top: 10.0),
                   child: Stack(
                     clipBehavior: Clip.none,
                     children: <Widget>[
@@ -119,11 +105,7 @@ class _AnimatedNotchBottomBarState extends State<AnimatedNotchBottomBar> {
                           opacity: widget.showBlurBottomBar ? widget.blurOpacity : 1,
                           child: CustomPaint(
                             size: Size(width, height),
-                            painter: BottomBarPainter(
-                                position: _itemPosByScrollPosition(scrollPosition),
-                                color: widget.color,
-                                showShadow: widget.showShadow,
-                                notchColor: widget.notchColor),
+                            painter: BottomBarPainter(position: _itemPosByScrollPosition(scrollPosition), color: widget.color, showShadow: widget.showShadow, notchColor: widget.notchColor),
                           ),
                         ),
                       ),
@@ -143,12 +125,7 @@ class _AnimatedNotchBottomBarState extends State<AnimatedNotchBottomBar> {
                           Positioned(
                             top: kMargin + (kHeight - kCircleRadius * 2) / 2,
                             left: kCircleMargin + _itemPosByIndex(i),
-                            child: BottomBarInActiveItem(i,
-                                itemWidget: widget.bottomBarItems[i].inActiveItem,
-                                label: widget.bottomBarItems[i].itemLabel,
-                                onTap: widget.onTap,
-                                showLabel: widget.showLabel,
-                                labelStyle: widget.itemLabelStyle),
+                            child: BottomBarInActiveItem(i, itemWidget: widget.bottomBarItems[i].inActiveItem, label: widget.bottomBarItems[i].itemLabel, onTap: widget.onTap, showLabel: widget.showLabel, labelStyle: widget.itemLabelStyle),
                           ),
                       ],
                     ],

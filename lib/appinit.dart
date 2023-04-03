@@ -46,7 +46,7 @@ class _AppInitState extends State<AppInit> {
           screenFunction: () async {
             await openAudio();
             // await player.dispose();
-            return const PageOperator();
+            return const LoginScreen();
           },
           curve: Curves.ease,
           splashIconSize: 60,
@@ -56,7 +56,7 @@ class _AppInitState extends State<AppInit> {
         ),
         Padding(
           padding: const EdgeInsets.only(
-            bottom: 25.0,
+            bottom: 25,
             right: 25,
           ),
           child: Center(

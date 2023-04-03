@@ -66,7 +66,7 @@ class Page2 extends StatelessWidget {
                               height: 50,
                               child: Text(
                                 searchProvider.nutritions[index].name!,
-                                style: const TextStyle(fontSize: 24),
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ),
                           ),
